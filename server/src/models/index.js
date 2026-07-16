@@ -3,6 +3,7 @@ import Company from './Company.js';
 import Application from './Application.js';
 import Recruiter from './Recruiter.js';
 import Interview from './Interview.js';
+import Task from './Task.js';
 
 // Define Associations
 User.hasMany(Company, {
@@ -96,6 +97,41 @@ Interview.belongsTo(Recruiter, {
   as: 'recruiter',
 });
 
-export { User, Company, Application, Recruiter, Interview };
+// Task Associations
+User.hasMany(Task, {
+  foreignKey: 'userId',
+  as: 'tasks',
+  onDelete: 'CASCADE',
+});
+
+Task.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user',
+});
+
+Application.hasMany(Task, {
+  foreignKey: 'applicationId',
+  as: 'tasks',
+  onDelete: 'CASCADE',
+});
+
+Task.belongsTo(Application, {
+  foreignKey: 'applicationId',
+  as: 'application',
+});
+
+Interview.hasMany(Task, {
+  foreignKey: 'interviewId',
+  as: 'tasks',
+  onDelete: 'CASCADE',
+});
+
+Task.belongsTo(Interview, {
+  foreignKey: 'interviewId',
+  as: 'interview',
+});
+
+export { User, Company, Application, Recruiter, Interview, Task };
+
 
 

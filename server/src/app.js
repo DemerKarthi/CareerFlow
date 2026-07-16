@@ -6,6 +6,7 @@ import companyRoutes from './routes/company.routes.js';
 import applicationRoutes from './routes/application.routes.js';
 import recruiterRoutes from './routes/recruiter.routes.js';
 import interviewRoutes from './routes/interview.routes.js';
+import taskRoutes from './routes/task.routes.js';
 import errorHandler from './middlewares/error.middleware.js';
 
 const app = express();
@@ -28,6 +29,7 @@ app.use('/api/companies', companyRoutes);
 app.use('/api/applications', applicationRoutes);
 app.use('/api/recruiters', recruiterRoutes);
 app.use('/api/interviews', interviewRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // Error handler middleware
 app.use(errorHandler);

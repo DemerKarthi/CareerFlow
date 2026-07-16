@@ -2,7 +2,7 @@ import React from 'react';
 import { PageContainer } from '../components/ui/PageContainer';
 import { TaskList } from '../features/tasks/components/TaskList';
 
-const CalendarPage = () => {
+const Tasks = () => {
   return (
     <PageContainer>
       <TaskList />
@@ -10,4 +10,4 @@ const CalendarPage = () => {
   );
 };
 
-export default CalendarPage;
+export default Tasks;
