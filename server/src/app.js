@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.routes.js';
 import companyRoutes from './routes/company.routes.js';
+import applicationRoutes from './routes/application.routes.js';
 import errorHandler from './middlewares/error.middleware.js';
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors({
 // Mount routers
 app.use('/api/auth', authRoutes);
 app.use('/api/companies', companyRoutes);
+app.use('/api/applications', applicationRoutes);
 
 // Error handler middleware
 app.use(errorHandler);
