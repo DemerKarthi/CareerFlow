@@ -1,6 +1,7 @@
 import app from './src/app.js';
 import sequelize from './src/config/database.js';
 import env from './src/config/env.js';
+import './src/models/index.js'; // Register models and associations
 
 const PORT = env.port;
 

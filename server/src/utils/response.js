@@ -13,6 +13,15 @@ export const response = {
     return response.success(res, message, data, HTTP_STATUS.CREATED);
   },
 
+  paginated: (res, message, data = [], pagination = {}, statusCode = HTTP_STATUS.OK) => {
+    return res.status(statusCode).json({
+      success: true,
+      message,
+      data,
+      pagination,
+    });
+  },
+
   error: (res, message, errors = [], statusCode = HTTP_STATUS.INTERNAL_SERVER_ERROR) => {
     return res.status(statusCode).json({
       success: false,
