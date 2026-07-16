@@ -1,6 +1,7 @@
 import User from './User.js';
 import Company from './Company.js';
 import Application from './Application.js';
+import Recruiter from './Recruiter.js';
 
 // Define Associations
 User.hasMany(Company, {
@@ -37,4 +38,28 @@ Application.belongsTo(Company, {
   as: 'company',
 });
 
-export { User, Company, Application };
+// Recruiter Associations
+User.hasMany(Recruiter, {
+  foreignKey: 'userId',
+  as: 'recruiters',
+  onDelete: 'CASCADE',
+});
+
+Recruiter.belongsTo(User, {
+  foreignKey: 'userId',
+  as: 'user',
+});
+
+Company.hasMany(Recruiter, {
+  foreignKey: 'companyId',
+  as: 'recruiters',
+  onDelete: 'CASCADE',
+});
+
+Recruiter.belongsTo(Company, {
+  foreignKey: 'companyId',
+  as: 'company',
+});
+
+export { User, Company, Application, Recruiter };
+
