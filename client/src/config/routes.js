@@ -1,0 +1,15 @@
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  DASHBOARD: "/dashboard",
+  APPLICATIONS: "/applications",
+  COMPANIES: "/companies",
+  RECRUITERS: "/recruiters",
+  INTERVIEWS: "/interviews",
+  CALENDAR: "/calendar",
+  ANALYTICS: "/analytics",
+  RESUMES: "/resumes",
+  PROFILE: "/profile",
+  SETTINGS: "/settings",
+};

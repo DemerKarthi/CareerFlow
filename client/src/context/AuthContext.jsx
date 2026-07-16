@@ -15,7 +15,8 @@ export const AuthProvider = ({ children }) => {
     queryFn: async () => {
       try {
         const response = await api.get('/auth/me');
-        return response.data.user;
+        console.log("!!!!response", { response })
+        return response.data.data.user;
       } catch (err) {
         if (err.message === 'Not authorized to access this route') {
           return null;
@@ -74,6 +75,7 @@ export const AuthProvider = ({ children }) => {
     logout: logoutMutation.mutateAsync,
   };
 
+  console.log("!!!!value", { value })
   return (
     <AuthContext.Provider value={value}>
       {children}

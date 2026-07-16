@@ -1,56 +1,66 @@
 import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { PageContainer } from '../components/ui/PageContainer';
+import { PageHeader } from '../components/ui/PageHeader';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
+import { Skeleton } from '../components/ui/skeleton';
+import { Button } from '../components/ui/button';
+import { Plus } from 'lucide-react';
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col">
-      <nav className="bg-white dark:bg-slate-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <span className="text-xl font-bold text-indigo-600 dark:text-indigo-400">CareerFlow</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-slate-700 dark:text-slate-300">
-                Welcome, {user?.name}
-              </span>
-              <button
-                onClick={handleLogout}
-                className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <main className="flex-1 max-w-7xl w-full mx-auto py-10 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            Dashboard
-          </h1>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">
-            You have successfully authenticated. This is a protected route.
-          </p>
-          <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
-            <h3 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2">Your Profile Information</h3>
-            <pre className="text-sm text-slate-800 dark:text-slate-200 overflow-auto">
-              {JSON.stringify(user, null, 2)}
-            </pre>
-          </div>
-        </div>
-      </main>
-    </div>
+    <PageContainer>
+      <PageHeader 
+        title="Dashboard" 
+        description="Here's what's happening with your job search today."
+      >
+        <Button>
+          <Plus className="mr-2 h-4 w-4" />
+          New Application
+        </Button>
+      </PageHeader>
+      
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {[1, 2, 3, 4].map((i) => (
+          <Card key={i}>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                <Skeleton className="h-4 w-24" />
+              </CardTitle>
+              <Skeleton className="h-4 w-4 rounded-full" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-8 w-16 mb-1" />
+              <Skeleton className="h-3 w-32" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mt-4">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>Your latest job search activities</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+             <Skeleton className="h-12 w-full" />
+             <Skeleton className="h-12 w-full" />
+             <Skeleton className="h-12 w-full" />
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Upcoming Interviews</CardTitle>
+            <CardDescription>You have 0 interviews this week</CardDescription>
+          </CardHeader>
+          <CardContent>
+             <div className="flex h-[200px] items-center justify-center rounded-md border border-dashed border-slate-200 dark:border-slate-800">
+               <span className="text-sm text-slate-500 dark:text-slate-400">No upcoming interviews</span>
+             </div>
+          </CardContent>
+        </Card>
+      </div>
+    </PageContainer>
   );
 };
 
